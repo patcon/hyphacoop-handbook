@@ -33,7 +33,7 @@ jobs:
 
     - name: Test the HTML
       run: |
-        bundle exec htmlproofer ~/workspace \
+        bundle exec htmlproofer _site/ \
           --allow-hash-href \
           --check-html \
           --empty-alt-ignore \
