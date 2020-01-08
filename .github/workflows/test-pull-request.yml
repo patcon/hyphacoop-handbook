@@ -15,6 +15,12 @@ jobs:
       with:
         node-version: '10.x'
 
+    - name: Install and build gitbook
+      run: |
+        npm install gitbook-cli
+        ./node_modules/.bin/gitbook install
+        ./node_modules/.bin/gitbook build
+
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
@@ -29,12 +35,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gem-
 
-    - name: Install and build gitbook
-      run: |
-        npm install gitbook-cli
-        ./node_modules/.bin/gitbook install
-        ./node_modules/.bin/gitbook build
-
     - name: Install htmlproofer
       run: |
         gem install bundler
@@ -43,7 +43,7 @@ jobs:
 
     - name: Test the HTML
       run: |
-        bundle exec htmlproofer _book \
+        bundle exec htmlproofer ./_book \
           --allow-hash-href \
           --check-html \
           --empty-alt-ignore \
